@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments and credentials
+.venv/
+venv/
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Dataset managed separately through Mendeley Data
+/dataset/
+
+# Local backups before publication
+/notebook_backup_before_publish/
+
+# Validation data managed separately
+/validation_monthly/bmkg_openmeteo_monthly_2025.csv
+/validation_monthly/openmeteo_monthly_2025.csv
+
+# Generated figure outputs
+/figure_scripts/outputs/
