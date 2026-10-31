@@ -8,8 +8,8 @@ chronological order:
 - rainy_days_30d, rainy_days_90d: number of rainy days
   (> DRY_DAY_THRESHOLD_MM)
 - max_daily_rainfall_30d: maximum daily precipitation over 30 days
-- consecutive_dry_days: consecutive dry days (precipitation < threshold)
-- temperature_range: temperature_2m_max - temperature_2m_min
+- current_dry_spell_length: running length of consecutive dry days
+  (precipitation < 1 mm)
 - rolling_temperature_mean_7d: 7-day mean temperature
 - cumulative_et0_30d: cumulative ET0 over 30 days
 - water_balance: daily precipitation_sum - et0_fao_evapotranspiration
@@ -36,7 +36,7 @@ INDICATOR_DEFINITIONS = [
     ("rainy_days_30d", "days", "Number of days with precipitation_sum > 1.0 mm over the current day and previous 29 days"),
     ("rainy_days_90d", "days", "Number of days with precipitation_sum > 1.0 mm over the current day and previous 89 days"),
     ("max_daily_rainfall_30d", "mm", "Maximum precipitation_sum over the current day and previous 29 days"),
-    ("consecutive_dry_days", "days", "Number of consecutive days with precipitation_sum < 1.0 mm up to and including the current day; the count resets to 0 on a wet day (precipitation_sum >= 1.0 mm)"),
+    ("current_dry_spell_length", "days", "Running length of consecutive dry days (precipitation < 1 mm), resetting to 0 when precipitation is >= 1 mm"),
     ("temperature_range", "°C", "Difference between temperature_2m_max and temperature_2m_min on the same day"),
     ("rolling_temperature_mean_7d", "°C", "Mean of temperature_2m_mean over the current day and previous 6 days"),
     ("cumulative_et0_30d", "mm", "Sum of et0_fao_evapotranspiration over the current day and previous 29 days"),
@@ -45,10 +45,10 @@ INDICATOR_DEFINITIONS = [
 ]
 
 
-def consecutive_dry_days(precip: pd.Series, threshold: float) -> pd.Series:
-    """Count consecutive dry days up to and including the current day.
-    Reset the count to 0 whenever precipitation is greater than or equal
-    to the threshold."""
+def current_dry_spell_length(precip: pd.Series, threshold: float) -> pd.Series:
+    """Calculate the current dry-spell length up to and including the
+    current day. Reset the count to 0 whenever precipitation is greater
+    than or equal to the threshold."""
     is_dry = (precip < threshold).astype(int)
 
     # Group by the cumulative count of wet days, then calculate the
@@ -71,7 +71,7 @@ def add_indicators(group: pd.DataFrame) -> pd.DataFrame:
     group["rainy_days_90d"] = is_rainy.rolling(90, min_periods=1).sum()
     group["max_daily_rainfall_30d"] = precip.rolling(30, min_periods=1).max()
 
-    group["consecutive_dry_days"] = consecutive_dry_days(
+    group["current_dry_spell_length"] = current_dry_spell_length(
         precip,
         config.DRY_DAY_THRESHOLD_MM
     )
