@@ -9,7 +9,7 @@ chronological order:
   (> DRY_DAY_THRESHOLD_MM)
 - max_daily_rainfall_30d: maximum daily precipitation over 30 days
 - current_dry_spell_length: running length of consecutive dry days
-  (precipitation < 1 mm)
+  (precipitation < 1.0 mm)
 - rolling_temperature_mean_7d: 7-day mean temperature
 - cumulative_et0_30d: cumulative ET0 over 30 days
 - water_balance: daily precipitation_sum - et0_fao_evapotranspiration
@@ -36,7 +36,7 @@ INDICATOR_DEFINITIONS = [
     ("rainy_days_30d", "days", "Number of days with precipitation_sum > 1.0 mm over the current day and previous 29 days"),
     ("rainy_days_90d", "days", "Number of days with precipitation_sum > 1.0 mm over the current day and previous 89 days"),
     ("max_daily_rainfall_30d", "mm", "Maximum precipitation_sum over the current day and previous 29 days"),
-    ("current_dry_spell_length", "days", "Running length of consecutive dry days (precipitation < 1 mm), resetting to 0 when precipitation is >= 1 mm"),
+    ("current_dry_spell_length", "days", "Running length of consecutive dry days (precipitation < 1.0 mm), resetting to 0 when precipitation is >= 1.0 mm"),
     ("temperature_range", "°C", "Difference between temperature_2m_max and temperature_2m_min on the same day"),
     ("rolling_temperature_mean_7d", "°C", "Mean of temperature_2m_mean over the current day and previous 6 days"),
     ("cumulative_et0_30d", "mm", "Sum of et0_fao_evapotranspiration over the current day and previous 29 days"),

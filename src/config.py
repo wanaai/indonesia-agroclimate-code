@@ -124,7 +124,7 @@ QC_RANGES = {
 }
 
 
-# Dry-day threshold for the consecutive_dry_days indicator (mm).
+# Dry-day threshold for the current_dry_spell_length indicator (mm).
 # Define and support this threshold with literature in the manuscript
 # (see Section 7).
 DRY_DAY_THRESHOLD_MM = 1.0
