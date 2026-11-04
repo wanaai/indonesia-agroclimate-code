@@ -142,13 +142,13 @@ Refer to the published dataset and its accompanying metadata for the dataset cha
 
 The complete dataset, including the processed data files, is available from Mendeley Data:
 
-**DOI:** https://doi.org/10.17632/3pfbdbzfff.1
+**DOI:** 10.17632/3pfbdbzfff.3
 
 The data files are maintained separately from this code repository to avoid duplicating the published dataset.
 
 ## Citation
 
-Iwan, Wana Ardilah; Sari, Sabrina Adinda; Isnan, Mahmud; Pardamean, Bens (2026). *Nationwide Agroclimatic Dataset for Indonesia*. Mendeley Data, V1. https://doi.org/10.17632/3pfbdbzfff.1
+Iwan, Wana Ardilah; Sari, Sabrina Adinda; Isnan, Mahmud; Pardamean, Bens (2026). *Nationwide Agroclimatic Dataset for Indonesia*. Mendeley Data, V3. https://doi.org/10.17632/3pfbdbzfff.3
 
 ## License
 
